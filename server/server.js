@@ -11,6 +11,10 @@ const PORT = 3000;
 
 const app = express();
 
+app.use(express.static(__dirname));
+
+app.use(express.static(path.join(__dirname, "build")));
+
 app.use("/server-client", (req, res, next) => {
   res.send({
     message: "Ola Mundo!!!",
@@ -29,8 +33,10 @@ app.use("/server-client", (req, res, next) => {
   // });
 });
 
-app.use(express.static(path.join(__dirname, "build")));
+app.get("/", function (req, res) {
+  return res.send("pong");
+});
 
 app.listen(PORT, () => {
-  console.log(`App launched on ${PORT}`);
+  console.log(`Server listening on the port::${PORT}`);
 });
