@@ -11,27 +11,24 @@ const PORT = 3000;
 
 const app = express();
 
-app.use(express.static(__dirname));
+app.set("port", process.env.PORT || 3000);
 
 app.use(express.static(path.join(__dirname, "build")));
 
-app.use("/server-client", (req, res, next) => {
-  res.send({
-    message: "Ola Mundo!!!",
-  });
-  // fs.readFile(path.resolve("./build/index.html"), "utf-8", (err, data) => {
-  //   if (err) {
-  //     console.log(err);
-  //     return res.status(500).send("Some error happened");
-  //   }
-  //   return res.send(
-  //     data.replace(
-  //       '<div id="root"></div>',
-  //       `<div id="root">${ReactDOMServer.renderToString(<App />)}</div>`
-  //     )
-  //   );
-  // });
-});
+// app.use("/server-client", (req, res, next) => {
+//   fs.readFile(path.resolve("./build/index.html"), "utf-8", (err, data) => {
+//     if (err) {
+//       console.log(err);
+//       return res.status(500).send("Some error happened");
+//     }
+//     return res.send(
+//       data.replace(
+//         '<div id="root"></div>',
+//         `<div id="root">${ReactDOMServer.renderToString(<App />)}</div>`
+//       )
+//     );
+//   });
+// });
 
 app.get("/", function (req, res) {
   return res.send("pong");
