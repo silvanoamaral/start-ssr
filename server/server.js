@@ -7,13 +7,11 @@ import ReactDOMServer from "react-dom/server";
 
 import App from "../src/App";
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
-app.set("port", process.env.PORT || 3000);
-
-app.use(express.static(path.join(__dirname, "build")));
+// app.use(express.static(path.join(__dirname, "build")));
 
 // app.use("/server-client", (req, res, next) => {
 //   fs.readFile(path.resolve("./build/index.html"), "utf-8", (err, data) => {
@@ -31,7 +29,7 @@ app.use(express.static(path.join(__dirname, "build")));
 // });
 
 app.get("/", function (req, res) {
-  return res.send("pong");
+  res.send("pong");
 });
 
 app.listen(PORT, () => {
